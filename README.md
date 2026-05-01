@@ -232,7 +232,7 @@ Open a new terminal that is NOT inside the virtual environment, then run:
 ```bash
 sudo rm /usr/lib/python3.13/EXTERNALLY-MANAGED
 
-cd tflite-coral-usb-custom-main/
+cd Pi5_object_detection_with_coral-main/
 ```
 
 Check the Python version inside `labelimg.sh` and update it to match your system, then install:
@@ -262,12 +262,55 @@ labelImg
 
 ---
 
-## Step 5: Annotate Images
+## Step 5: Capture Training Images with img.py
 
-1. Create a folder named `images` and copy your raw images into it.
-2. Open LabelImg, set the image directory to your `images` folder.
-3. Draw bounding boxes around objects and assign class labels.
-4. Save annotations in Pascal VOC (XML) format.
+Before annotating, you need a dataset of images. Use `img.py` to capture images from your camera directly on the Raspberry Pi.
+
+**5.1 Create the images folder:**
+
+```bash
+mkdir images
+```
+
+**5.2 Open `img.py` and update the save path** to point to your `images` folder. Find this line and replace the path:
+
+```python
+cv2.imwrite("/home/pi/Downloads/yolov8-custom-object-detection-googlecoralusb-main/images/arduino_uno_%d.jpg" %cpt, frame)
+```
+
+Change it to match the actual path of your `images` folder, for example:
+
+```python
+cv2.imwrite("/home/pi/Pi5_object_detection_with_coral-main/Images/object_%d.jpg" %cpt, frame)
+```
+
+You can also change the filename prefix (`object_`) to something that describes your target object.
+
+**5.3 Install opencv-python (use system Python 3.13, outside the virtual environment):**
+
+```bash
+pip install opencv-python
+```
+
+**5.4 Open img.py in thonny and run**
+
+While the script runs, move your object in front of the camera:
+- Move it left and right
+- Move it closer and further away
+- Rotate it to capture different angles
+- Vary the background and lighting if possible
+
+The script will capture 30 frames by default and save them to the `images` folder. If you want more image change in code
+
+---
+
+## Step 6: Annotate Images
+
+1. Launch LabelImg.
+2. Click **Open Dir** and navigate to your `images` folder.
+3. Click **Change Save Dir** and set it to the same `images` folder so annotations are saved alongside the images.
+4. Draw bounding boxes around objects and assign class labels.
+5. Save annotations in Pascal VOC (XML) format.
 
 After annotation, organize your dataset:
 
@@ -283,11 +326,9 @@ freedomtech/
     └── ...
 ```
 
-A general rule of thumb is to use 80% of images for training and 20% for validation.
-
 ---
 
-## Step 6: Train the Model on Google Colab
+## Step 7: Train the Model on Google Colab
 
 Compress the dataset folder:
 
@@ -335,7 +376,7 @@ If you encounter errors or need to modify the code, always reset the environment
 
 ---
 
-## Step 7: Deploy the Trained Model to Raspberry Pi 5
+## Step 8: Deploy the Trained Model to Raspberry Pi 5
 
 Download `best_edgetpu.tflite` from Google Colab and copy it to the `freedomtech` folder on your Raspberry Pi.
 
