@@ -1,0 +1,5 @@
+sudo rm /usr/lib/python3.13/EXTERNALLY-MANAGED
+
+chmod 0700 /run/user/1000
+
+sudo zip -r  freedomtech.zip freedomtech/*

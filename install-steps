@@ -1,0 +1,33 @@
+########################INSTALL PYTHON 3.9.12#########################
+
+1)sudo apt-get update
+2)sudo apt-get upgrade
+3)mkdir freedomtech
+4)cd freedomtech
+5)curl https://pyenv.run | bash
+6)echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init --path)"' >> ~/.bashrc
+echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+exec "$SHELL"
+7)sudo apt-get install --yes libssl-dev zlib1g-dev libbz2-dev libreadline-dev \
+  libsqlite3-dev llvm libncurses-dev xz-utils tk-dev libgdbm-dev lzma \
+  tcl-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev wget curl \
+  make build-essential openssl
+8)pyenv install 3.9.12
+9)pyenv local 3.9.12
+10)python --version
+
+
+#########################Google Coral Usb######################################
+
+1)python3 -m venv .venv
+source .venv/bin/activate
+2) sudo mkdir -p /etc/apt/keyrings
+3) curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
+  sudo gpg --dearmor -o /etc/apt/keyrings/coral-edgetpu.gpg
+4) echo "deb [signed-by=/etc/apt/keyrings/coral-edgetpu.gpg] https://packages.cloud.google.com/apt coral-edgetpu-stable main" | \
+sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
+5) sudo apt-get update
+6) sudo apt-get install libedgetpu1-std
+
+############################################################AFTER ALL THIS PROCESS  COMPLETED JUST REBOOT YOUR RASPBERRY PI 4##########################################################################
