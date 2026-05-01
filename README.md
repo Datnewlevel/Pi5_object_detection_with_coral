@@ -369,10 +369,9 @@ After training completes, the output file `best.tflite` will be exported.
 Before running cell 12, upload `test.py` to the Colab session. This script copies metadata from `best.tflite` into `best_edgetpu.tflite` so the model is compatible with the Coral EdgeTPU compiler.
 
 If you encounter errors or need to modify the code, always reset the environment fully:
-1. Runtime > Change runtime type (re-select GPU)
-2. Edit > Clear all outputs
-3. Runtime > Disconnect and delete runtime
-4. Restart session
+1. Edit > Clear all outputs
+2. Runtime > Disconnect and delete runtime
+3. Restart session
 
 ---
 
