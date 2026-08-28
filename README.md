@@ -2,8 +2,6 @@
 
 This repository provides a complete guide and all necessary scripts to run and train a custom object detection model on Raspberry Pi 5 using Google Coral USB Accelerator and TensorFlow Lite.
 
-Tutorial video: https://youtu.be/AE6fcQHJ_lE
-
 ---
 
 ## Credits
